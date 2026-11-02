@@ -1,0 +1,10 @@
+Author: Reuben Uwaifo P2826038
+Date: 02 November 2026
+Individual — Customer role
+
+Architecture
+XML layouts + ViewBinding, MVVM.
+
+Justification
+• XML + ViewBinding provides a clear separation between layout and logic, matching the module's established approach.
+• Changes can be made easily and efficiently without making changes to the logic.
