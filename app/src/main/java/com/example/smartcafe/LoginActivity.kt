@@ -37,11 +37,11 @@ class LoginActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Success: Navigate to MainActivity
-                        startActivity(Intent(this, MainActivity::class.java))
+
+                        startActivity(Intent(this, MenuActivity::class.java))
                         finish()
                     } else {
-                        // Failure: Show error
+
                         Toast.makeText(this, "Login Failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                     }
                 }

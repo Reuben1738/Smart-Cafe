@@ -43,7 +43,7 @@ class RegisterActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, MainActivity::class.java))
+                        startActivity(Intent(this, MenuActivity::class.java))
                         finish()
                     } else {
                         Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_LONG).show()
