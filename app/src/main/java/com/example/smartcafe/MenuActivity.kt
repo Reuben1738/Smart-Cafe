@@ -33,18 +33,26 @@ class MenuActivity : AppCompatActivity() {
             return
         }
 
-        binding.tvWelcome.text = "Welcome, ${auth.currentUser?.email}"
+        val userEmail = auth.currentUser?.email ?: "User"
+        val userNamePart = userEmail.substringBefore("@") // Gets "reuben" from "reuben@gmail.com"
+        val formattedName = userNamePart.replaceFirstChar { it.uppercase() } // Makes it "Reuben"
 
+        binding.tvWelcome.text = "Welcome, $formattedName"
+        // ---------------------------------------------
 
         binding.btnLogout.setOnClickListener {
             auth.signOut()
             Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
 
-
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
+        }
+
+        // Go to Cart Screen
+        binding.btnViewCart.setOnClickListener {
+            startActivity(Intent(this, CartActivity::class.java))
         }
 
         setupRecyclerView()
@@ -62,11 +70,11 @@ class MenuActivity : AppCompatActivity() {
             val existingItems: List<MenuItem> = db.menuItemDao().getAllMenuItems()
 
             if (existingItems.isEmpty()) {
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Latte", description = "Smooth espresso with steamed milk", price = 3.50))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Cappuccino", description = "Espresso with thick milk foam", price = 3.20))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Chocolate Cake", description = "Rich and moist chocolate cake", price = 4.00))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Croissant", description = "Butter croissant", price = 2.50))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Iced Tea", description = "Refreshing lemon iced tea", price = 2.80))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Latte", description = "Smooth espresso with steamed milk", price = 7.50))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Cappuccino", description = "Espresso with thick milk foam", price = 5.20))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Chocolate Cake", description = "Rich and moist chocolate cake", price = 9.00))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Croissant", description = "Butter croissant", price = 3.50))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Iced Tea", description = "Refreshing lemon iced tea", price = 4.80))
 
                 Toast.makeText(this@MenuActivity, "Menu Populated!", Toast.LENGTH_SHORT).show()
             }

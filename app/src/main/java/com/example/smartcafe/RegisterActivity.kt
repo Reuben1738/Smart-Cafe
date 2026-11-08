@@ -46,7 +46,15 @@ class RegisterActivity : AppCompatActivity() {
                         startActivity(Intent(this, MenuActivity::class.java))
                         finish()
                     } else {
-                        Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        // Check the specific error from Firebase and show a simple message
+                        val errorMessage = when (task.exception?.message) {
+                            "The email address is already in use by another account." -> "This email is already registered"
+                            "The email address is badly formatted." -> "Invalid email format"
+                            "Password should be at least 6 characters" -> "Password must be at least 6 characters"
+                            "A network error (such as timeout, interrupted connection or unreachable host) has occurred." -> "Network error. Check your internet."
+                            else -> "Registration failed. Please try again."
+                        }
+                        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
                     }
                 }
         }

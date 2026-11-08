@@ -41,8 +41,15 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(Intent(this, MenuActivity::class.java))
                         finish()
                     } else {
-
-                        Toast.makeText(this, "Login Failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        // Check the specific error from Firebase and show a simple message
+                        val errorMessage = when (task.exception?.message) {
+                            "The password is invalid or the user does not have a password." -> "Incorrect password"
+                            "There is no user record corresponding to this identifier. The user may have been deleted." -> "Email not found"
+                            "The email address is badly formatted." -> "Invalid email format"
+                            "A network error (such as timeout, interrupted connection or unreachable host) has occurred." -> "Network error. Check your internet."
+                            else -> "Login failed. Please try again."
+                        }
+                        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
                     }
                 }
         }
