@@ -55,6 +55,11 @@ class MenuActivity : AppCompatActivity() {
             startActivity(Intent(this, CartActivity::class.java))
         }
 
+        // Go to Order History Screen
+        binding.btnOrderHistory.setOnClickListener {
+            startActivity(Intent(this, OrderHistoryActivity::class.java))
+        }
+
         setupRecyclerView()
         checkAndSeedDatabase()
     }
