@@ -1,7 +1,9 @@
-# Client Meeting Records
+# Client Meeting Record
 
-This file records the weekly discussions with the client (lab tutor), tracking feedback, changes, and actions taken.
+## Meeting 1: 5th November 2026
+*   **Features Demonstrated:** Firebase Authentication (Login/Register), Room Database populating a RecyclerView, and basic navigation.
+*   **Feedback Received:** Tutor suggested focusing on the core Customer workflow first and ensuring data validation is robust.
+*   **New/Modified Requirements:** Added a Shopping Cart and Order History feature to complete the user journey.
+*   **Agreed Actions:** Implement cart logic, order saving, and begin research on Advanced Integration (Weather API/Analytics).
 
-
-Date - 29/10/2026 
-Project setup, PRD, architecture decisions 
+## Meeting 2: 12th November 2026
