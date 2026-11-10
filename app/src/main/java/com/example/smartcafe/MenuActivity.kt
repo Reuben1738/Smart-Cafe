@@ -73,7 +73,7 @@ class MenuActivity : AppCompatActivity() {
             val existingItems: List<MenuItem> = db.menuItemDao().getAllMenuItems()
 
             if (existingItems.isEmpty()) {
-                // --- 12 MENU ITEMS ---
+                // MENU ITEMS
                 db.menuItemDao().insertMenuItem(MenuItem(name = "Latte", description = "Smooth espresso with steamed milk", price = 7.50))
                 db.menuItemDao().insertMenuItem(MenuItem(name = "Cappuccino", description = "Espresso with milk", price = 5.20))
                 db.menuItemDao().insertMenuItem(MenuItem(name = "Chocolate Cake", description = "Rich and moist chocolate cake", price = 9.00))
@@ -84,8 +84,8 @@ class MenuActivity : AppCompatActivity() {
                 db.menuItemDao().insertMenuItem(MenuItem(name = "Americano", description = "Espresso with hot water", price = 4.50))
                 db.menuItemDao().insertMenuItem(MenuItem(name = "Blueberry Muffin", description = "Fluffy muffin packed with blueberries", price = 4.20))
                 db.menuItemDao().insertMenuItem(MenuItem(name = "Cinnamon Roll", description = "Soft, sweet, and glazed", price = 5.50))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Hot Chocolate", description = "Rich, creamy, and hot chocolate", price = 5.00))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Avocado Toast", description = "Avocado on toast", price = 6.50))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Hot Chocolate", description = "Rich, creamy, and hot chocolate with Marshmallow", price = 5.00))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "French Toast", description = "French toast with melted butter and maple syrup", price = 6.50))
 
                 Toast.makeText(this@MenuActivity, "Menu Populated!", Toast.LENGTH_SHORT).show()
             }
