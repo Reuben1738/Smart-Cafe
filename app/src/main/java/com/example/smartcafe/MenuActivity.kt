@@ -73,21 +73,21 @@ class MenuActivity : AppCompatActivity() {
             val existingItems: List<MenuItem> = db.menuItemDao().getAllMenuItems()
 
             if (existingItems.isEmpty()) {
-                // MENU ITEMS
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Latte", description = "Smooth espresso with steamed milk", price = 7.50))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Cappuccino", description = "Espresso with milk", price = 5.20))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Chocolate Cake", description = "Rich and moist chocolate cake", price = 9.00))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Croissant", description = "Freshly baked butter croissant", price = 3.50))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Iced Tea", description = "Lemon iced tea", price = 4.80))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Flat White", description = "Double espresso with foam", price = 6.80))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Mocha", description = "Espresso, chocolate, and steamed milk", price = 7.20))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Americano", description = "Espresso with hot water", price = 4.50))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Blueberry Muffin", description = "Fluffy muffin packed with blueberries", price = 4.20))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Cinnamon Roll", description = "Soft, sweet, and glazed", price = 5.50))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "Hot Chocolate", description = "Rich, creamy, and hot chocolate with Marshmallow", price = 5.00))
-                db.menuItemDao().insertMenuItem(MenuItem(name = "French Toast", description = "French toast with melted butter and maple syrup", price = 6.50))
+                // MENU ITEMS WITH IMAGES
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Latte", description = "Smooth espresso with steamed milk", price = 7.50, imageResId = R.drawable.latte ))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Cappuccino", description = "Espresso with thick milk foam", price = 5.20, imageResId = R.drawable.cappuccino))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Chocolate Cake", description = "Rich and moist chocolate cake", price = 9.00, imageResId = R.drawable.chocolate_cake))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Croissant", description = "Freshly baked butter croissant", price = 3.50, imageResId = R.drawable.croissant))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Iced Tea", description = "Refreshing lemon iced tea", price = 4.80, imageResId = R.drawable.iced_tea))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Flat White", description = "Double espresso with microfoam", price = 6.80, imageResId = R.drawable.flat_white))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Mocha", description = "Espresso, chocolate, and steamed milk", price = 7.20, imageResId = R.drawable.mocha))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Americano", description = "Espresso diluted with hot water", price = 4.50, imageResId = R.drawable.americano))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Blueberry Muffin", description = "Fluffy muffin packed with blueberries", price = 4.20, imageResId = R.drawable.blueberry_muffin))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Cinnamon Roll", description = "Soft, sweet, and glazed", price = 5.50, imageResId = R.drawable.cinnamon_roll))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "Hot Chocolate", description = "Rich, creamy, and topped with marshmallows", price = 5.00, imageResId = R.drawable.hot_chocolate))
+                db.menuItemDao().insertMenuItem(MenuItem(name = "French Toast", description = "Thick sliced brioche with syrup and butter", price = 8.50, imageResId = R.drawable.french_toast))
 
-                Toast.makeText(this@MenuActivity, "Menu Populated!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MenuActivity, "This is Menu!", Toast.LENGTH_SHORT).show()
             }
 
             allMenuItems = db.menuItemDao().getAllMenuItems()

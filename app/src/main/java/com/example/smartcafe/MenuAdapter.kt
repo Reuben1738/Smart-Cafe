@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -15,8 +16,8 @@ class MenuAdapter(private val menuList: List<MenuItem>) : RecyclerView.Adapter<M
         val tvName: TextView = itemView.findViewById(R.id.tvItemName)
         val tvDesc: TextView = itemView.findViewById(R.id.tvItemDesc)
         val tvPrice: TextView = itemView.findViewById(R.id.tvItemPrice)
-        // Find the new button we just added
         val btnAddToCart: Button = itemView.findViewById(R.id.btnAddToCart)
+        val ivItemImage: ImageView = itemView.findViewById(R.id.ivItemImage)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
@@ -30,12 +31,11 @@ class MenuAdapter(private val menuList: List<MenuItem>) : RecyclerView.Adapter<M
         holder.tvDesc.text = item.description
         holder.tvPrice.text = "£${item.price}"
 
-        // Set up the click listener for the Add button
-        holder.btnAddToCart.setOnClickListener {
-            // Add the specific item to our CartManager
-            CartManager.addToCart(item)
 
-            // Show a confirmation message to the user
+        holder.ivItemImage.setImageResource(item.imageResId)
+
+        holder.btnAddToCart.setOnClickListener {
+            CartManager.addToCart(item)
             Toast.makeText(holder.itemView.context, "${item.name} added to cart!", Toast.LENGTH_SHORT).show()
         }
     }
