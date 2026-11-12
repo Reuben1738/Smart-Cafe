@@ -1,15 +1,16 @@
 package com.example.smartcafe
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope // Import for Coroutines
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.smartcafe.data.local.AppDatabase // Import AppDatabase
-import com.example.smartcafe.data.model.Order // Import Order model
+import com.example.smartcafe.data.local.AppDatabase
+import com.example.smartcafe.data.model.Order
 import com.example.smartcafe.databinding.ActivityCartBinding
-import com.google.firebase.auth.FirebaseAuth // Import FirebaseAuth
-import kotlinx.coroutines.launch // Import launch
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 
 class CartActivity : AppCompatActivity() {
 
@@ -20,6 +21,13 @@ class CartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Security check: if not logged in, go to Login
+        if (FirebaseAuth.getInstance().currentUser == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+            return
+        }
 
         setupRecyclerView()
         updateTotalPrice()
@@ -60,7 +68,6 @@ class CartActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        // passes the list from CartManager to the Adapter
         cartAdapter = CartAdapter(CartManager.cartItems) {
             updateTotalPrice()
         }

@@ -1,6 +1,7 @@
 package com.example.smartcafe
 
 import android.app.AlertDialog
+import android.content.Intent // <-- ADDED IMPORT
 import android.os.Bundle
 import android.widget.RatingBar
 import android.widget.Toast
@@ -24,6 +25,13 @@ class OrderHistoryActivity : AppCompatActivity() {
         binding = ActivityOrderHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Security check: if not logged in, go to Login
+        if (FirebaseAuth.getInstance().currentUser == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+            return
+        }
+
         db = AppDatabase.getDatabase(this)
         binding.rvOrderHistory.layoutManager = LinearLayoutManager(this)
 
@@ -35,7 +43,6 @@ class OrderHistoryActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             val orders = db.orderDao().getOrdersByUser(userEmail)
-
 
             binding.rvOrderHistory.adapter = OrderHistoryAdapter(
                 orders,
