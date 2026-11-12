@@ -53,10 +53,10 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#EEEEEE"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp" />
 
-        <!-- Bottom Row: Total and Status -->
+        <!-- Total and Status Row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Total: £0.00"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#4CAF50" />
 
@@ -77,9 +77,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Status: Pending"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#FF9800" />
         </LinearLayout>
+
+        <!-- Bottom Row: Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/btnSimulateAdmin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Update Status"
+                android:textSize="14sp"
+                android:backgroundTint="#673AB7"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnLeaveFeedback"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Leave Feedback"
+                android:textSize="14sp"
+                android:backgroundTint="#FF9800"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

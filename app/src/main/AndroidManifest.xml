@@ -24,12 +24,10 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MenuActivity"

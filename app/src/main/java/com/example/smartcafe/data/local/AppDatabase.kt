@@ -5,13 +5,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.smartcafe.data.model.MenuItem
-import com.example.smartcafe.data.model.Order // Add this import!
+import com.example.smartcafe.data.model.Feedback
+import com.example.smartcafe.data.model.Order
 
-@Database(entities = [MenuItem::class, Order::class], version = 2, exportSchema = false)
+@Database(entities = [MenuItem::class, Order::class, Feedback::class], version = 3, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun menuItemDao(): MenuItemDao
     abstract fun orderDao(): OrderDao
+    abstract fun feedbackDao(): FeedbackDao
 
     companion object {
         @Volatile
@@ -24,7 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "smart_cafe_database"
                 )
-                    .fallbackToDestructiveMigration() // This prevents crashes when we change the DB version
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance

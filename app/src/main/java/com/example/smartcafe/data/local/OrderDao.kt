@@ -12,4 +12,6 @@ interface OrderDao {
 
     @Query("SELECT * FROM orders WHERE userEmail = :email ORDER BY timestamp DESC")
     suspend fun getOrdersByUser(email: String): List<Order>
+    @Query("UPDATE orders SET status = :newStatus WHERE id = :orderId")
+    suspend fun updateOrderStatus(orderId: Int, newStatus: String)
 }

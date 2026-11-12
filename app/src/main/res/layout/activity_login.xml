@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <!-- Background Image -->
     <ImageView
@@ -14,7 +16,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/overlay_black" />
+        android:background="#CC000000" />
 
     <!-- Main Content -->
     <LinearLayout
@@ -29,49 +31,66 @@
             android:layout_height="wrap_content"
             android:text="Smart Café"
             android:textColor="#FFFFFF"
-            android:textSize="32sp"
+            android:textSize="36sp"
             android:textStyle="bold"
-            android:layout_marginBottom="32dp" />
+            android:layout_marginBottom="40dp" />
 
+        <!-- Email Field -->
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:background="#FFFFFF">
+            android:textColorHint="#AAAAAA"
+            app:boxStrokeColor="#FFFFFF">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColor="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Password Field -->
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Password"
-            android:background="#FFFFFF">
+            android:textColorHint="#AAAAAA"
+            app:boxStrokeColor="#FFFFFF">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Login Button -->
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Login" />
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:text="LOGIN"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="#000000" />
 
+        <!-- Register Link -->
         <TextView
             android:id="@+id/tvRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="Don't have an account? Register here"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
+
     </LinearLayout>
 </FrameLayout>
