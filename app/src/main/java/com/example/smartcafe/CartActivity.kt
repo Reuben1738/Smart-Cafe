@@ -41,11 +41,11 @@ class CartActivity : AppCompatActivity() {
                 val userEmail = FirebaseAuth.getInstance().currentUser?.email ?: "unknown"
 
                 // 2. Create a summary of items
-                val itemsSummary = CartManager.cartItems.groupingBy { it.name }.eachCount()
-                    .map { "${it.value}x ${it.key}" }
-                    .joinToString(", ")
+                val itemsSummary = CartManager.cartItems.entries.joinToString(", ") {
+                    "${it.value}x ${it.key.name}"
+                }
 
-                // 3. Create the Order object
+                // 3. Create the Order
                 val newOrder = Order(
                     userEmail = userEmail,
                     itemsSummary = itemsSummary,
