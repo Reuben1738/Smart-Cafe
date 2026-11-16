@@ -12,11 +12,6 @@
         android:scaleType="centerCrop"
         android:src="@drawable/bg_register" />
 
-    <!-- Dark Overlay -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#CC000000" />
 
     <!-- Main Content -->
     <LinearLayout
