@@ -1,5 +1,6 @@
 package com.example.smartcafe
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -32,38 +33,55 @@ class CartActivity : AppCompatActivity() {
         setupRecyclerView()
         updateTotalPrice()
 
-        // Checkout Button Logic
+        // Checkout Button Logic (with Simulated Payment)
         binding.btnCheckout.setOnClickListener {
             if (CartManager.cartItems.isEmpty()) {
                 Toast.makeText(this, "Your cart is empty!", Toast.LENGTH_SHORT).show()
             } else {
-                // 1. Get the current user's email from Firebase
-                val userEmail = FirebaseAuth.getInstance().currentUser?.email ?: "unknown"
-
-                // 2. Create a summary of items
-                val itemsSummary = CartManager.cartItems.entries.joinToString(", ") {
-                    "${it.value}x ${it.key.name}"
-                }
-
-                // 3. Create the Order
-                val newOrder = Order(
-                    userEmail = userEmail,
-                    itemsSummary = itemsSummary,
-                    totalPrice = CartManager.getTotalPrice(),
-                    status = "Pending"
-                )
-
-                // 4. Save to Room Database
-                lifecycleScope.launch {
-                    val db = AppDatabase.getDatabase(this@CartActivity)
-                    db.orderDao().insertOrder(newOrder)
-
-                    // 5. Show success and clear the cart
-                    Toast.makeText(this@CartActivity, "Order Placed Successfully!", Toast.LENGTH_LONG).show()
-                    CartManager.clearCart()
-                    finish()
-                }
+                showPaymentDialog()
             }
+        }
+    }
+
+    private fun showPaymentDialog() {
+        val totalPrice = CartManager.getTotalPrice()
+
+        AlertDialog.Builder(this)
+            .setTitle("Payment")
+            .setMessage("Your total is £${String.format("%.2f", totalPrice)}.\n\nDo you want to proceed with the payment?")
+            .setPositiveButton("Pay Now") { dialog, _ ->
+                dialog.dismiss()
+                processOrder()
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun processOrder() {
+        val userEmail = FirebaseAuth.getInstance().currentUser?.email ?: "unknown"
+
+        // Create a summary of items from the Map (Quantity x Name)
+        val itemsSummary = CartManager.cartItems.entries.joinToString(", ") {
+            "${it.value}x ${it.key.name}"
+        }
+
+        val newOrder = Order(
+            userEmail = userEmail,
+            itemsSummary = itemsSummary,
+            totalPrice = CartManager.getTotalPrice(),
+            status = "Pending"
+        )
+
+        // Save to Room Database
+        lifecycleScope.launch {
+            val db = AppDatabase.getDatabase(this@CartActivity)
+            db.orderDao().insertOrder(newOrder)
+
+            Toast.makeText(this@CartActivity, "Payment Successful! Order Placed.", Toast.LENGTH_LONG).show()
+            CartManager.clearCart()
+            finish()
         }
     }
 
